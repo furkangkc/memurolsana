@@ -29,7 +29,11 @@ MAX_YENI_ILAN = 15
 MAX_PDF_BOYUTU = 15 * 1024 * 1024
 
 HEADERS = {
-    "User-Agent": "KamuAlimBilgiBotu/1.0 (+https://siteadiniz.com)"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
 }
 
 ETIKETLER = {
@@ -236,8 +240,8 @@ def sitemap_guncelle(ilanlar: list[dict]) -> None:
         f.write(xml)
 
 
-def sayfa_ve_pdf_indir(url: str) -> tuple[str, str | None, bytes | None]:
-    resp = requests.get(url, headers=HEADERS, timeout=25)
+def sayfa_ve_pdf_indir(oturum: requests.Session, url: str) -> tuple[str, str | None, bytes | None]:
+    resp = oturum.get(url, headers={"Referer": BASE_URL}, timeout=25)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
     sayfa_metni = soup.get_text("\n", strip=True)[:15000]
@@ -252,7 +256,7 @@ def sayfa_ve_pdf_indir(url: str) -> tuple[str, str | None, bytes | None]:
     pdf_bytes = None
     if pdf_url:
         try:
-            pdf_resp = requests.get(pdf_url, headers=HEADERS, timeout=30)
+            pdf_resp = oturum.get(pdf_url, headers={"Referer": url}, timeout=30)
             pdf_resp.raise_for_status()
             ctype = pdf_resp.headers.get("Content-Type", "").lower()
             if ("pdf" in ctype or pdf_resp.content[:4] == b"%PDF") and len(pdf_resp.content) <= MAX_PDF_BOYUTU:
@@ -300,7 +304,10 @@ def calistir():
     mevcut_ilanlar = [i for i in mevcut_ilanlari_yukle() if not str(i.get("id", "")).startswith("ornek-")]
     mevcut_idler = {item["id"] for item in mevcut_ilanlar}
 
-    resp = requests.get(BASE_URL, headers=HEADERS, timeout=25)
+    oturum = requests.Session()
+    oturum.headers.update(HEADERS)
+
+    resp = oturum.get(BASE_URL, timeout=25)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -324,7 +331,7 @@ def calistir():
         print(f"İnceleniyor: {ham_baslik}")
         try:
             time.sleep(SITE_BEKLEME_SURESI)
-            sayfa_metni, pdf_url, pdf_bytes = sayfa_ve_pdf_indir(tam_url)
+            sayfa_metni, pdf_url, pdf_bytes = sayfa_ve_pdf_indir(oturum, tam_url)
             ayristirilmis = gemini_ile_ayristir(client, ham_baslik, sayfa_metni, pdf_bytes)
 
             yeni_kayit = {
