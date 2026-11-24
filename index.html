@@ -45,7 +45,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .brand {
       display: flex;
@@ -67,21 +68,22 @@
     }
     .brand-text { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
     .brand-text span { color: var(--primary); }
-    .saved-btn {
+    .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .top-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 14px;
+      padding: 8px 13px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
       transition: 0.15s;
     }
-    .saved-btn.active {
+    .top-btn.active, .top-btn.admin-btn {
       background: var(--primary);
       color: #fff;
       border-color: var(--primary);
@@ -110,11 +112,7 @@
       max-width: 680px;
       margin-bottom: 18px;
     }
-    .search-bar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .search-bar { display: flex; gap: 10px; flex-wrap: wrap; }
     .search-bar input {
       flex: 1;
       min-width: 220px;
@@ -173,26 +171,18 @@
       justify-content: space-between;
       margin-bottom: 18px;
     }
-    .filter-selects {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    select {
+    .filter-selects { display: flex; flex-wrap: wrap; gap: 8px; }
+    select, input[type="text"], input[type="number"], textarea {
       padding: 9px 12px;
       border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text);
       font-size: 0.88rem;
-      font-weight: 600;
-      cursor: pointer;
+      font-family: inherit;
     }
-    .result-info {
-      font-size: 0.88rem;
-      color: var(--muted);
-      font-weight: 600;
-    }
+    select { font-weight: 600; cursor: pointer; }
+    .result-info { font-size: 0.88rem; color: var(--muted); font-weight: 600; }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -215,12 +205,7 @@
       box-shadow: var(--shadow);
       border-color: #cbd5e1;
     }
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-    }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
     .kurum {
       font-size: 0.8rem;
       font-weight: 700;
@@ -237,24 +222,9 @@
       padding: 2px 4px;
     }
     .bookmark.saved { color: #eab308; }
-    .card h2 {
-      font-size: 1.06rem;
-      font-weight: 700;
-      line-height: 1.38;
-      color: var(--text);
-      margin-top: 4px;
-    }
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .badge {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 9px;
-      border-radius: 6px;
-    }
+    .card h2 { font-size: 1.06rem; font-weight: 700; line-height: 1.38; color: var(--text); margin-top: 4px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge { font-size: 0.75rem; font-weight: 700; padding: 4px 9px; border-radius: 6px; }
     .b-ortaogretim { background: var(--lise-bg); color: #92400e; }
     .b-onlisans { background: var(--onlisans-bg); color: #115e59; }
     .b-lisans { background: var(--lisans-bg); color: #3730a3; }
@@ -276,6 +246,60 @@
       border: 1px dashed var(--border);
       border-radius: var(--radius);
       color: var(--muted);
+    }
+
+    /* Yönetici Paneli */
+    .admin-panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .admin-panel.open { display: block; }
+    .admin-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label { font-size: 0.84rem; font-weight: 700; color: var(--text); }
+    .check-row { display: flex; gap: 14px; flex-wrap: wrap; padding-top: 6px; }
+    .check-row label { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+    .admin-list { margin-top: 22px; border-top: 1px solid var(--border); padding-top: 16px; }
+    .admin-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      flex-wrap: wrap;
+    }
+    .del-btn {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      padding: 6px 11px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.8rem;
     }
 
     /* Modal */
@@ -300,13 +324,7 @@
       padding: 24px;
       box-shadow: 0 24px 48px rgba(0,0,0,0.2);
     }
-    .modal-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
+    .modal-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
     .close-btn {
       background: #f1f5f9;
       border: none;
@@ -326,16 +344,8 @@
       color: var(--primary);
       margin-bottom: 8px;
     }
-    .modal-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-    }
-    .modal-table th, .modal-table td {
-      text-align: left;
-      padding: 9px 10px;
-      border-bottom: 1px solid var(--border);
-    }
+    .modal-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .modal-table th, .modal-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); }
     .modal-table th { background: #f8fafc; font-weight: 700; }
     .modal ul { padding-left: 18px; color: #334155; font-size: 0.92rem; }
     .modal li { margin-bottom: 6px; }
@@ -357,6 +367,7 @@
       font-size: 0.9rem;
       text-decoration: none;
       cursor: pointer;
+      border: none;
     }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-outline { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
@@ -377,7 +388,7 @@
     @media (max-width: 600px) {
       .hero-box { padding: 20px 18px; }
       .grid { grid-template-columns: 1fr; }
-      .modal { padding: 18px; }
+      .modal, .admin-panel { padding: 18px; }
     }
   </style>
 </head>
@@ -388,7 +399,10 @@
         <div class="brand-icon">KA</div>
         <div class="brand-text">Kamu<span>Alım</span></div>
       </a>
-      <button id="savedToggle" class="saved-btn" type="button">★ Kaydedilenler (<span id="savedCount">0</span>)</button>
+      <div class="header-actions">
+        <button id="savedToggle" class="top-btn" type="button">★ Kaydedilenler (<span id="savedCount">0</span>)</button>
+        <button id="adminToggle" class="top-btn admin-btn" type="button">+ İlan Ekle / Yönet</button>
+      </div>
     </div>
   </header>
 
@@ -403,6 +417,98 @@
   </section>
 
   <main class="container">
+    <section class="admin-panel" id="adminPanel">
+      <div class="admin-head">
+        <div>
+          <h2 style="font-size:1.15rem;">İlan Ekleme ve Yönetim Paneli</h2>
+          <p style="font-size:0.84rem;color:var(--muted);">Eklenen ilanlar tarayıcıda anında görünür. Tüm ziyaretçilere kalıcı yayınlamak için <strong>ilanlar.json İndir</strong> ile indirip GitHub'daki <code>data/ilanlar.json</code> dosyasına yükleyin.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button type="button" class="btn btn-outline" id="downloadJsonBtn">⬇ ilanlar.json İndir</button>
+          <button type="button" class="btn btn-outline" id="adminCloseBtn">Kapat</button>
+        </div>
+      </div>
+
+      <form id="addListingForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fKurum">Kurum Adı *</label>
+            <input type="text" id="fKurum" required placeholder="Örn: T.C. Sağlık Bakanlığı" />
+          </div>
+          <div class="form-group">
+            <label for="fBaslik">İlan Başlığı *</label>
+            <input type="text" id="fBaslik" required placeholder="Örn: Sözleşmeli Büro Personeli Alımı" />
+          </div>
+          <div class="form-group">
+            <label for="fSehir">Şehir *</label>
+            <input type="text" id="fSehir" required placeholder="Örn: Ankara veya Türkiye Geneli" />
+          </div>
+          <div class="form-group">
+            <label for="fKontenjan">Toplam Kontenjan</label>
+            <input type="number" id="fKontenjan" min="0" value="0" />
+          </div>
+          <div class="form-group">
+            <label for="fKpss">KPSS Durumu</label>
+            <select id="fKpss">
+              <option value="kpssli">KPSS Puanlı</option>
+              <option value="sartsiz">KPSS Şartsız</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fKpssDetay">KPSS Detayı</label>
+            <input type="text" id="fKpssDetay" placeholder="Örn: KPSS P3 en az 65 puan" />
+          </div>
+          <div class="form-group">
+            <label for="fBaslangic">Başvuru Başlangıç</label>
+            <input type="text" id="fBaslangic" placeholder="GG.AA.YYYY" />
+          </div>
+          <div class="form-group">
+            <label for="fBitis">Son Başvuru Tarihi</label>
+            <input type="text" id="fBitis" placeholder="GG.AA.YYYY" />
+          </div>
+          <div class="form-group">
+            <label for="fKaynak">Resmi İlan Linki</label>
+            <input type="text" id="fKaynak" placeholder="https://kamuilan.sbb.gov.tr/..." />
+          </div>
+          <div class="form-group">
+            <label>Öğrenim Düzeyi *</label>
+            <div class="check-row">
+              <label><input type="checkbox" name="fKat" value="ortaogretim" /> Ortaöğretim</label>
+              <label><input type="checkbox" name="fKat" value="onlisans" /> Önlisans</label>
+              <label><input type="checkbox" name="fKat" value="lisans" checked /> Lisans</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:12px;">
+          <label for="fOzet">Kısa İlan Özeti *</label>
+          <textarea id="fOzet" rows="2" required placeholder="İlanın kısa özeti..."></textarea>
+        </div>
+
+        <div class="form-grid" style="margin-top:12px;">
+          <div class="form-group">
+            <label for="fKadrolar">Kadrolar (Her satıra: Unvan | öğrenim | kontenjan | kpss)</label>
+            <textarea id="fKadrolar" rows="3" placeholder="Büro Personeli | lisans | 20 | KPSS P3 - 65"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="fSartlar">Başvuru Şartları (Her satıra 1 şart)</label>
+            <textarea id="fSartlar" rows="3" placeholder="657 sayılı Kanun'un 48. maddesindeki şartları taşımak."></textarea>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:12px;">
+          <label for="fBasvuruSekli">Başvuru Şekli</label>
+          <input type="text" id="fBasvuruSekli" placeholder="Örn: Kariyer Kapısı üzerinden e-Devlet ile başvuru." />
+        </div>
+
+        <div style="margin-top:16px;">
+          <button type="submit" class="btn btn-primary">İlanı Listeye Ekle</button>
+        </div>
+      </form>
+
+      <div class="admin-list" id="adminListingManager"></div>
+    </section>
+
     <div class="tabs-wrap" id="categoryTabs">
       <button class="tab-btn active" data-cat="tumu">Tümü <span class="count" id="c-tumu">0</span></button>
       <button class="tab-btn" data-cat="ortaogretim">Ortaöğretim (Lise) <span class="count" id="c-ortaogretim">0</span></button>
@@ -447,6 +553,7 @@
   </footer>
 
   <script>
+    const ADMIN_SIFRE = "Alcapon224155";
     const ETIKETLER = {
       ortaogretim: "Ortaöğretim",
       onlisans: "Önlisans",
@@ -456,9 +563,14 @@
     let tumIlanlar = [];
     let aktifKategori = "tumu";
     let sadeceKaydedilenler = false;
+    let adminGirisYapildi = sessionStorage.getItem("kamualim_admin_ok") === "1";
     let kaydedilenler = JSON.parse(localStorage.getItem("kamualim_saved") || "[]");
 
     const norm = (s) => (s || "").toLocaleLowerCase("tr-TR");
+
+    function yerelTaslakKaydet() {
+      localStorage.setItem("kamualim_local_ilanlar", JSON.stringify(tumIlanlar));
+    }
 
     function guncelleKaydedilenSayaci() {
       document.getElementById("savedCount").textContent = kaydedilenler.length;
@@ -466,9 +578,11 @@
 
     function sehirleriDoldur(ilanlar) {
       const select = document.getElementById("cityFilter");
+      const onceki = select.value;
       const sehirler = [...new Set(ilanlar.map(i => i.sehir).filter(Boolean))].sort((a, b) => a.localeCompare(b, "tr"));
       select.innerHTML = '<option value="tumu">Şehir: Tümü</option>' +
         sehirler.map(s => `<option value="${s}">${s}</option>`).join("");
+      if ([...select.options].some(o => o.value === onceki)) select.value = onceki;
     }
 
     function sayaclariGuncelle(ilanlar) {
@@ -477,6 +591,30 @@
         document.getElementById("c-" + kat).textContent =
           ilanlar.filter(i => (i.kategoriler || []).includes(kat)).length;
       });
+    }
+
+    function adminListesiniGuncelle() {
+      const box = document.getElementById("adminListingManager");
+      if (!tumIlanlar.length) {
+        box.innerHTML = "<p style='color:var(--muted);font-size:0.88rem;'>Henüz ilan bulunmuyor.</p>";
+        return;
+      }
+      box.innerHTML = "<h3 style='font-size:0.95rem;margin-bottom:10px;'>Mevcut İlanlar (" + tumIlanlar.length + ")</h3>" +
+        tumIlanlar.map(i => `
+          <div class="admin-item">
+            <div><strong>${i.kurum}</strong> — ${i.baslik} <span style="color:var(--muted);">(${i.sehir})</span></div>
+            <button type="button" class="del-btn" onclick="ilanSil('${i.id}')">Sil</button>
+          </div>
+        `).join("");
+    }
+
+    function ilanSil(id) {
+      tumIlanlar = tumIlanlar.filter(i => i.id !== id);
+      yerelTaslakKaydet();
+      sehirleriDoldur(tumIlanlar);
+      sayaclariGuncelle(tumIlanlar);
+      adminListesiniGuncelle();
+      filtreleVeGoster();
     }
 
     function filtreleVeGoster() {
@@ -628,6 +766,89 @@
       document.getElementById("modalBackdrop").classList.remove("open");
     }
 
+    document.getElementById("adminToggle").addEventListener("click", () => {
+      const panel = document.getElementById("adminPanel");
+      if (!adminGirisYapildi) {
+        const girilen = prompt("Yönetici şifresini girin:");
+        if (girilen !== ADMIN_SIFRE) {
+          if (girilen !== null) alert("Şifre hatalı.");
+          return;
+        }
+        adminGirisYapildi = true;
+        sessionStorage.setItem("kamualim_admin_ok", "1");
+      }
+      panel.classList.toggle("open");
+      adminListesiniGuncelle();
+    });
+
+    document.getElementById("adminCloseBtn").addEventListener("click", () => {
+      document.getElementById("adminPanel").classList.remove("open");
+    });
+
+    document.getElementById("addListingForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const kategoriler = [...document.querySelectorAll('input[name="fKat"]:checked')].map(c => c.value);
+      if (!kategoriler.length) {
+        alert("En az bir öğrenim düzeyi seçin.");
+        return;
+      }
+
+      const kadrolar = document.getElementById("fKadrolar").value
+        .split("\n").map(s => s.trim()).filter(Boolean)
+        .map(satir => {
+          const p = satir.split("|").map(x => x.trim());
+          return {
+            unvan: p[0] || "Personel",
+            ogrenim: ["ortaogretim", "onlisans", "lisans"].includes(p[1]) ? p[1] : kategoriler[0],
+            kontenjan: parseInt(p[2], 10) || 0,
+            kpss_turu: p[3] || "-"
+          };
+        });
+
+      const sartlar = document.getElementById("fSartlar").value
+        .split("\n").map(s => s.trim()).filter(Boolean);
+
+      const yeniIlan = {
+        id: "ilan-" + Date.now(),
+        slug: "",
+        kurum: document.getElementById("fKurum").value.trim(),
+        baslik: document.getElementById("fBaslik").value.trim(),
+        kategoriler,
+        kpss: document.getElementById("fKpss").value,
+        kpss_detay: document.getElementById("fKpssDetay").value.trim() || (document.getElementById("fKpss").value === "sartsiz" ? "KPSS Şartsız" : "KPSS"),
+        sehir: document.getElementById("fSehir").value.trim(),
+        toplam_kontenjan: parseInt(document.getElementById("fKontenjan").value, 10) || 0,
+        baslangic_tarihi: document.getElementById("fBaslangic").value.trim(),
+        son_basvuru_tarihi: document.getElementById("fBitis").value.trim(),
+        ozet: document.getElementById("fOzet").value.trim(),
+        kadrolar,
+        sartlar,
+        basvuru_sekli: document.getElementById("fBasvuruSekli").value.trim() || "Resmi ilan sayfasından başvuru yapınız.",
+        kaynak_url: document.getElementById("fKaynak").value.trim() || "https://kamuilan.sbb.gov.tr/",
+        pdf_url: null,
+        eklenme_tarihi: new Date().toISOString().slice(0, 16).replace("T", " ")
+      };
+
+      tumIlanlar.unshift(yeniIlan);
+      yerelTaslakKaydet();
+      e.target.reset();
+      sehirleriDoldur(tumIlanlar);
+      sayaclariGuncelle(tumIlanlar);
+      adminListesiniGuncelle();
+      filtreleVeGoster();
+      alert("İlan eklendi! Tüm ziyaretçilere yayınlamak için 'ilanlar.json İndir' butonuyla dosyayı indirip GitHub'daki data/ilanlar.json dosyasına yükleyin.");
+    });
+
+    document.getElementById("downloadJsonBtn").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(tumIlanlar, null, 2)], { type: "application/json;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "ilanlar.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
     document.getElementById("modalBackdrop").addEventListener("click", (e) => {
       if (e.target.id === "modalBackdrop") detayKapat();
     });
@@ -654,16 +875,26 @@
 
     async function baslat() {
       guncelleKaydedilenSayaci();
+      const yerelTaslak = localStorage.getItem("kamualim_local_ilanlar");
+      if (yerelTaslak) {
+        try {
+          tumIlanlar = JSON.parse(yerelTaslak);
+        } catch (_) {}
+      }
       try {
         const res = await fetch("./data/ilanlar.json?t=" + Date.now());
-        if (!res.ok) throw new Error("JSON okunamadı");
-        tumIlanlar = await res.json();
+        if (res.ok) {
+          const sunucuVerisi = await res.json();
+          if (!yerelTaslak || sunucuVerisi.length >= tumIlanlar.length) {
+            tumIlanlar = sunucuVerisi;
+          }
+        }
       } catch (err) {
         console.error(err);
-        tumIlanlar = [];
       }
       sehirleriDoldur(tumIlanlar);
       sayaclariGuncelle(tumIlanlar);
+      adminListesiniGuncelle();
       filtreleVeGoster();
     }
 
