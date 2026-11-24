@@ -1,0 +1,90 @@
+[
+  {
+    "id": "ornek-001",
+    "slug": "saglik-bakanligi-sozlesmeli-personel-alimi",
+    "kurum": "T.C. Sağlık Bakanlığı",
+    "baslik": "81 İl Geneli Sözleşmeli Sağlık ve Büro Personeli Alımı (Örnek İlan)",
+    "kategoriler": [
+      "ortaogretim",
+      "onlisans",
+      "lisans"
+    ],
+    "kpss": "kpssli",
+    "kpss_detay": "KPSS P3 / P93 / P94 en az 60 puan",
+    "sehir": "Türkiye Geneli",
+    "toplam_kontenjan": 1250,
+    "baslangic_tarihi": "01.12.2026",
+    "son_basvuru_tarihi": "15.12.2026",
+    "ozet": "Bu ilan sistemin görünümünü test etmeniz için eklenmiş örnek bir kayıttır. GitHub Actions botunu çalıştırdığınızda kamuilan.sbb.gov.tr üzerindeki gerçek ilanlar otomatik olarak buraya eklenecektir.",
+    "kadrolar": [
+      {
+        "unvan": "Hemşire",
+        "ogrenim": "lisans",
+        "kontenjan": 600,
+        "kpss_turu": "KPSS P3 - 60"
+      },
+      {
+        "unvan": "Tıbbi Sekreter",
+        "ogrenim": "onlisans",
+        "kontenjan": 400,
+        "kpss_turu": "KPSS P93 - 60"
+      },
+      {
+        "unvan": "Destek Personeli",
+        "ogrenim": "ortaogretim",
+        "kontenjan": 250,
+        "kpss_turu": "KPSS P94 - 60"
+      }
+    ],
+    "sartlar": [
+      "657 sayılı Devlet Memurları Kanunu'nun 48. maddesindeki genel şartları taşımak.",
+      "İlgili öğrenim düzeyinden mezun olmak.",
+      "İlgili KPSS puan türünden taban puanı almış olmak.",
+      "Görevini devamlı yapmasına engel sağlık sorunu bulunmamak."
+    ],
+    "basvuru_sekli": "Kariyer Kapısı (isealimkariyerkapisi.cbiko.gov.tr) üzerinden e-Devlet şifresi ile online başvuru.",
+    "kaynak_url": "https://kamuilan.sbb.gov.tr/",
+    "pdf_url": null,
+    "eklenme_tarihi": "2026-11-24 00:00"
+  },
+  {
+    "id": "ornek-002",
+    "slug": "belediye-zabita-ve-memur-alimi",
+    "kurum": "Büyükşehir Belediyesi (Örnek)",
+    "baslik": "Zabıta Memuru ve Tekniker Alım İlanı (Örnek İlan)",
+    "kategoriler": [
+      "onlisans",
+      "lisans"
+    ],
+    "kpss": "kpssli",
+    "kpss_detay": "KPSS P3 / P93 en az 65 puan",
+    "sehir": "Ankara",
+    "toplam_kontenjan": 85,
+    "baslangic_tarihi": "02.12.2026",
+    "son_basvuru_tarihi": "20.12.2026",
+    "ozet": "Önlisans ve lisans mezunlarına yönelik örnek belediye personel alımı kaydıdır. Bot çalıştırıldığında güncel resmi ilanlar otomatik listelenir.",
+    "kadrolar": [
+      {
+        "unvan": "Zabıta Memuru",
+        "ogrenim": "lisans",
+        "kontenjan": 50,
+        "kpss_turu": "KPSS P3 - 65"
+      },
+      {
+        "unvan": "Bilgisayar Teknikeri",
+        "ogrenim": "onlisans",
+        "kontenjan": 35,
+        "kpss_turu": "KPSS P93 - 65"
+      }
+    ],
+    "sartlar": [
+      "Sınav tarihinde 30 yaşını doldurmamış olmak (Zabıta kadrosu için).",
+      "En az B sınıfı sürücü belgesine sahip olmak.",
+      "KPSS puan türünden en az 65 puan almış olmak."
+    ],
+    "basvuru_sekli": "İlgili belediyenin insan kaynakları sayfası üzerinden elektronik başvuru.",
+    "kaynak_url": "https://kamuilan.sbb.gov.tr/",
+    "pdf_url": null,
+    "eklenme_tarihi": "2026-11-23 18:00"
+  }
+]

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KamuAlım | Güncel Kamu Personel Alım İlanları (Ortaöğretim, Önlisans, Lisans)</title>
+  <meta name="description" content="Ortaöğretim, Önlisans ve Lisans mezunları için güncel kamu personel, memur ve sözleşmeli alım ilanlarını hızlıca filtreleyin ve inceleyin." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #1d4ed8;
+      --primary-soft: #eff6ff;
+      --lise: #d97706;
+      --lise-bg: #fef3c7;
+      --onlisans: #0f766e;
+      --onlisans-bg: #ccfbf1;
+      --lisans: #4338ca;
+      --lisans-bg: #e0e7ff;
+      --radius: 14px;
+      --shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+    .brand-text { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .brand-text span { color: var(--primary); }
+    .saved-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .saved-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .hero {
+      max-width: 1120px;
+      margin: 24px auto 16px;
+      padding: 0 20px;
+    }
+    .hero-box {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 28px 26px;
+      box-shadow: var(--shadow);
+    }
+    .hero-box h1 {
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .hero-box p {
+      color: #cbd5e1;
+      font-size: 0.96rem;
+      max-width: 680px;
+      margin-bottom: 18px;
+    }
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .search-bar input {
+      flex: 1;
+      min-width: 220px;
+      padding: 13px 16px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px 48px;
+    }
+    .tabs-wrap {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px 0 14px;
+      scrollbar-width: none;
+    }
+    .tabs-wrap::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .tab-btn .count {
+      background: #f1f5f9;
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+    }
+    .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tab-btn.active .count { background: rgba(255,255,255,0.2); color: #fff; }
+    .tab-btn[data-cat="ortaogretim"].active { background: var(--lise); border-color: var(--lise); }
+    .tab-btn[data-cat="onlisans"].active { background: var(--onlisans); border-color: var(--onlisans); }
+    .tab-btn[data-cat="lisans"].active { background: var(--lisans); border-color: var(--lisans); }
+
+    .filters-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .filter-selects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    select {
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .result-info {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: #cbd5e1;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .kurum {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .bookmark {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #94a3b8;
+      padding: 2px 4px;
+    }
+    .bookmark.saved { color: #eab308; }
+    .card h2 {
+      font-size: 1.06rem;
+      font-weight: 700;
+      line-height: 1.38;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+    .b-ortaogretim { background: var(--lise-bg); color: #92400e; }
+    .b-onlisans { background: var(--onlisans-bg); color: #115e59; }
+    .b-lisans { background: var(--lisans-bg); color: #3730a3; }
+    .b-kpss { background: #f1f5f9; color: #334155; }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid #f1f5f9;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+    .meta strong { color: var(--text); display: block; font-size: 0.86rem; }
+    .empty {
+      text-align: center;
+      padding: 48px 20px;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--surface);
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.2);
+    }
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .close-btn {
+      background: #f1f5f9;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .modal h3 { font-size: 1.25rem; margin-top: 4px; }
+    .modal-section { margin-top: 18px; }
+    .modal-section h4 {
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .modal-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .modal-table th, .modal-table td {
+      text-align: left;
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-table th { background: #f8fafc; font-weight: 700; }
+    .modal ul { padding-left: 18px; color: #334155; font-size: 0.92rem; }
+    .modal li { margin-bottom: 6px; }
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 28px 20px;
+      text-align: center;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    footer nav { margin: 10px 0; }
+    footer a { color: var(--text); text-decoration: none; margin: 0 10px; font-weight: 600; }
+    footer a:hover { color: var(--primary); }
+    .disclaimer { max-width: 780px; margin: 10px auto 0; font-size: 0.8rem; color: #94a3b8; }
+
+    @media (max-width: 600px) {
+      .hero-box { padding: 20px 18px; }
+      .grid { grid-template-columns: 1fr; }
+      .modal { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">KA</div>
+        <div class="brand-text">Kamu<span>Alım</span></div>
+      </a>
+      <button id="savedToggle" class="saved-btn" type="button">★ Kaydedilenler (<span id="savedCount">0</span>)</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-box">
+      <h1>Güncel Kamu Personel Alım İlanları</h1>
+      <p>Ortaöğretim (Lise), Önlisans ve Lisans mezunlarına özel tüm kamu ilanlarını tek ekranda filtreleyin, kadro dağılımını ve başvuru şartlarını anında inceleyin.</p>
+      <div class="search-bar">
+        <input id="searchInput" type="search" placeholder="Kurum, kadro unvanı veya şehir ara (ör. Sağlık, Mühendis, Ankara)..." />
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="tabs-wrap" id="categoryTabs">
+      <button class="tab-btn active" data-cat="tumu">Tümü <span class="count" id="c-tumu">0</span></button>
+      <button class="tab-btn" data-cat="ortaogretim">Ortaöğretim (Lise) <span class="count" id="c-ortaogretim">0</span></button>
+      <button class="tab-btn" data-cat="onlisans">Önlisans <span class="count" id="c-onlisans">0</span></button>
+      <button class="tab-btn" data-cat="lisans">Lisans <span class="count" id="c-lisans">0</span></button>
+    </div>
+
+    <div class="filters-row">
+      <div class="filter-selects">
+        <select id="kpssFilter" aria-label="KPSS Filtresi">
+          <option value="tumu">KPSS: Tümü</option>
+          <option value="kpssli">KPSS Puanlı</option>
+          <option value="sartsiz">KPSS Şartsız</option>
+        </select>
+        <select id="cityFilter" aria-label="Şehir Filtresi">
+          <option value="tumu">Şehir: Tümü</option>
+        </select>
+        <select id="sortFilter" aria-label="Sıralama">
+          <option value="yeni">En Yeni İlanlar</option>
+          <option value="kontenjan">En Yüksek Kontenjan</option>
+        </select>
+      </div>
+      <div class="result-info" id="resultInfo">Yükleniyor...</div>
+    </div>
+
+    <div class="grid" id="listingsGrid"></div>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <footer>
+    <p><strong>© 2026 KamuAlım</strong></p>
+    <nav aria-label="Yasal Bağlantılar">
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="iletisim.html">İletişim</a>
+      <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+      <a href="sorumluluk-reddi.html">Sorumluluk Reddi</a>
+    </nav>
+    <p class="disclaimer">KamuAlım bağımsız bir bilgilendirme platformudur; herhangi bir kamu kurumu ile bağlantısı yoktur. Kesin başvuru şartları için ilan içindeki resmi kaynak bağlantısını kontrol ediniz.</p>
+  </footer>
+
+  <script>
+    const ETIKETLER = {
+      ortaogretim: "Ortaöğretim",
+      onlisans: "Önlisans",
+      lisans: "Lisans"
+    };
+
+    let tumIlanlar = [];
+    let aktifKategori = "tumu";
+    let sadeceKaydedilenler = false;
+    let kaydedilenler = JSON.parse(localStorage.getItem("kamualim_saved") || "[]");
+
+    const norm = (s) => (s || "").toLocaleLowerCase("tr-TR");
+
+    function guncelleKaydedilenSayaci() {
+      document.getElementById("savedCount").textContent = kaydedilenler.length;
+    }
+
+    function sehirleriDoldur(ilanlar) {
+      const select = document.getElementById("cityFilter");
+      const sehirler = [...new Set(ilanlar.map(i => i.sehir).filter(Boolean))].sort((a, b) => a.localeCompare(b, "tr"));
+      select.innerHTML = '<option value="tumu">Şehir: Tümü</option>' +
+        sehirler.map(s => `<option value="${s}">${s}</option>`).join("");
+    }
+
+    function sayaclariGuncelle(ilanlar) {
+      document.getElementById("c-tumu").textContent = ilanlar.length;
+      ["ortaogretim", "onlisans", "lisans"].forEach(kat => {
+        document.getElementById("c-" + kat).textContent =
+          ilanlar.filter(i => (i.kategoriler || []).includes(kat)).length;
+      });
+    }
+
+    function filtreleVeGoster() {
+      const aranan = norm(document.getElementById("searchInput").value.trim());
+      const kpss = document.getElementById("kpssFilter").value;
+      const sehir = document.getElementById("cityFilter").value;
+      const siralama = document.getElementById("sortFilter").value;
+
+      let liste = tumIlanlar.filter(ilan => {
+        if (sadeceKaydedilenler && !kaydedilenler.includes(ilan.id)) return false;
+        if (aktifKategori !== "tumu" && !(ilan.kategoriler || []).includes(aktifKategori)) return false;
+        if (kpss !== "tumu" && ilan.kpss !== kpss) return false;
+        if (sehir !== "tumu" && ilan.sehir !== sehir) return false;
+        if (aranan) {
+          const metin = norm([
+            ilan.kurum, ilan.baslik, ilan.sehir, ilan.ozet,
+            ...(ilan.kadrolar || []).map(k => k.unvan)
+          ].join(" "));
+          if (!metin.includes(aranan)) return false;
+        }
+        return true;
+      });
+
+      if (siralama === "kontenjan") {
+        liste.sort((a, b) => (b.toplam_kontenjan || 0) - (a.toplam_kontenjan || 0));
+      }
+
+      document.getElementById("resultInfo").textContent = `${liste.length} ilan listeleniyor`;
+      const grid = document.getElementById("listingsGrid");
+
+      if (!liste.length) {
+        grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">Seçtiğiniz kriterlere uygun ilan bulunamadı.</div>';
+        return;
+      }
+
+      grid.innerHTML = liste.map(ilan => {
+        const isSaved = kaydedilenler.includes(ilan.id);
+        const katRozetleri = (ilan.kategoriler || [])
+          .map(k => `<span class="badge b-${k}">${ETIKETLER[k] || k}</span>`).join("");
+        const kontenjanText = ilan.toplam_kontenjan > 0 ? `${ilan.toplam_kontenjan} Kişi` : "Belirtilmemiş";
+        const sonTarih = ilan.son_basvuru_tarihi || "İlan metnine bakınız";
+
+        return `
+          <article class="card" onclick="detayAc('${ilan.id}')">
+            <div>
+              <div class="card-top">
+                <div class="kurum">${ilan.kurum || "Kamu Kurumu"}</div>
+                <button class="bookmark ${isSaved ? "saved" : ""}" title="Kaydet"
+                  onclick="event.stopPropagation(); kaydetDegistir('${ilan.id}')">
+                  ${isSaved ? "★" : "☆"}
+                </button>
+              </div>
+              <h2>${ilan.baslik}</h2>
+            </div>
+            <div class="badges">
+              ${katRozetleri}
+              <span class="badge b-kpss">${ilan.kpss === "sartsiz" ? "KPSS Şartsız" : (ilan.kpss_detay || "KPSS")}</span>
+            </div>
+            <div class="meta">
+              <div>Şehir<strong>${ilan.sehir || "Belirtilmemiş"}</strong></div>
+              <div>Kontenjan<strong>${kontenjanText}</strong></div>
+              <div>Son Başvuru<strong>${sonTarih}</strong></div>
+              <div>Detay<strong style="color:var(--primary)">İncele →</strong></div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function kaydetDegistir(id) {
+      if (kaydedilenler.includes(id)) {
+        kaydedilenler = kaydedilenler.filter(x => x !== id);
+      } else {
+        kaydedilenler.push(id);
+      }
+      localStorage.setItem("kamualim_saved", JSON.stringify(kaydedilenler));
+      guncelleKaydedilenSayaci();
+      filtreleVeGoster();
+    }
+
+    function detayAc(id) {
+      const ilan = tumIlanlar.find(x => x.id === id);
+      if (!ilan) return;
+
+      const kadroSatirlari = (ilan.kadrolar && ilan.kadrolar.length)
+        ? `<table class="modal-table">
+            <thead><tr><th>Unvan</th><th>Öğrenim</th><th>Kontenjan</th><th>KPSS</th></tr></thead>
+            <tbody>
+              ${ilan.kadrolar.map(k => `
+                <tr>
+                  <td>${k.unvan}</td>
+                  <td>${ETIKETLER[k.ogrenim] || k.ogrenim}</td>
+                  <td>${k.kontenjan || "-"}</td>
+                  <td>${k.kpss_turu || "-"}</td>
+                </tr>`).join("")}
+            </tbody>
+           </table>`
+        : "<p style='color:var(--muted);font-size:0.9rem;'>Kadro tablosu için resmi ilan kılavuzunu inceleyiniz.</p>";
+
+      const sartListesi = (ilan.sartlar && ilan.sartlar.length)
+        ? `<ul>${ilan.sartlar.map(s => `<li>${s}</li>`).join("")}</ul>`
+        : "<p style='color:var(--muted);font-size:0.9rem;'>Özel şartlar için resmi kaynağa bakınız.</p>";
+
+      const seoLink = ilan.slug
+        ? `<a class="btn btn-outline" href="ilanlar/${ilan.slug}.html">Ayrı Sayfada Aç</a>`
+        : "";
+      const pdfLink = ilan.pdf_url
+        ? `<a class="btn btn-outline" href="${ilan.pdf_url}" target="_blank" rel="noopener noreferrer">PDF Kılavuzu</a>`
+        : "";
+
+      document.getElementById("modalContent").innerHTML = `
+        <div class="modal-head">
+          <div>
+            <div class="kurum">${ilan.kurum || "Kamu Kurumu"}</div>
+            <h3>${ilan.baslik}</h3>
+          </div>
+          <button class="close-btn" onclick="detayKapat()" aria-label="Kapat">×</button>
+        </div>
+        <p style="color:#334155;font-size:0.95rem;">${ilan.ozet || ""}</p>
+
+        <div class="modal-section">
+          <h4>Kadro ve Kontenjan Dağılımı</h4>
+          ${kadroSatirlari}
+        </div>
+
+        <div class="modal-section">
+          <h4>Başvuru Şartları</h4>
+          ${sartListesi}
+        </div>
+
+        <div class="modal-section">
+          <h4>Başvuru Şekli ve Tarihler</h4>
+          <p style="font-size:0.92rem;color:#334155;">
+            <strong>Tarihler:</strong> ${ilan.baslangic_tarihi || "-"} / ${ilan.son_basvuru_tarihi || "-"}<br/>
+            <strong>Yöntem:</strong> ${ilan.basvuru_sekli || "Resmi kaynak üzerinden kontrol ediniz."}
+          </p>
+        </div>
+
+        <div class="modal-actions">
+          <a class="btn btn-primary" href="${ilan.kaynak_url || "https://kamuilan.sbb.gov.tr/"}" target="_blank" rel="noopener noreferrer">Resmi İlan Kaynağına Git ↗</a>
+          ${pdfLink}
+          ${seoLink}
+        </div>
+      `;
+      document.getElementById("modalBackdrop").classList.add("open");
+    }
+
+    function detayKapat() {
+      document.getElementById("modalBackdrop").classList.remove("open");
+    }
+
+    document.getElementById("modalBackdrop").addEventListener("click", (e) => {
+      if (e.target.id === "modalBackdrop") detayKapat();
+    });
+
+    document.getElementById("categoryTabs").addEventListener("click", (e) => {
+      const btn = e.target.closest(".tab-btn");
+      if (!btn) return;
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      aktifKategori = btn.dataset.cat;
+      filtreleVeGoster();
+    });
+
+    document.getElementById("savedToggle").addEventListener("click", (e) => {
+      sadeceKaydedilenler = !sadeceKaydedilenler;
+      e.currentTarget.classList.toggle("active", sadeceKaydedilenler);
+      filtreleVeGoster();
+    });
+
+    ["searchInput", "kpssFilter", "cityFilter", "sortFilter"].forEach(id => {
+      document.getElementById(id).addEventListener("input", filtreleVeGoster);
+      document.getElementById(id).addEventListener("change", filtreleVeGoster);
+    });
+
+    async function baslat() {
+      guncelleKaydedilenSayaci();
+      try {
+        const res = await fetch("./data/ilanlar.json?t=" + Date.now());
+        if (!res.ok) throw new Error("JSON okunamadı");
+        tumIlanlar = await res.json();
+      } catch (err) {
+        console.error(err);
+        tumIlanlar = [];
+      }
+      sehirleriDoldur(tumIlanlar);
+      sayaclariGuncelle(tumIlanlar);
+      filtreleVeGoster();
+    }
+
+    baslat();
+  </script>
+</body>
+</html>

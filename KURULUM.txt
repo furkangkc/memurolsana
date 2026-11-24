@@ -1,0 +1,12 @@
+KAMUALIM HIZLI KURULUM (3 ADIM)
+===============================
+
+1) ZIP'i bilgisayarınızda bir klasöre çıkarın.
+2) GitHub'da yeni bir Public depo açın ve klasörün içindeki tüm dosyaları sürükleyip bırakın (Upload files -> Commit changes).
+   NOT: Eğer gizli klasör olduğu için '.github' klasörü yüklenmezse, GitHub'da 'Add file -> Create new file' diyerek
+   dosya adına '.github/workflows/guncelle.yml' yazıp paket içindeki guncelle.yml içeriğini yapıştırın.
+3) GitHub'da:
+   - Settings -> Secrets and variables -> Actions -> 'GEMINI_API_KEY' ekleyin.
+   - Settings -> Actions -> General -> 'Read and write permissions' seçip kaydedin.
+   - Settings -> Pages -> Branch: main / (root) seçip kaydedin.
+   - Actions sekmesinden 'Kamu İlanlarını Güncelle' -> 'Run workflow' ile ilk testi başlatın.
