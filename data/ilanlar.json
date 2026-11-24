@@ -1,90 +1,38 @@
-[
-  {
-    "id": "ornek-001",
-    "slug": "saglik-bakanligi-sozlesmeli-personel-alimi",
-    "kurum": "T.C. Sağlık Bakanlığı",
-    "baslik": "81 İl Geneli Sözleşmeli Sağlık ve Büro Personeli Alımı (Örnek İlan)",
-    "kategoriler": [
-      "ortaogretim",
-      "onlisans",
-      "lisans"
-    ],
-    "kpss": "kpssli",
-    "kpss_detay": "KPSS P3 / P93 / P94 en az 60 puan",
-    "sehir": "Türkiye Geneli",
-    "toplam_kontenjan": 1250,
-    "baslangic_tarihi": "01.12.2026",
-    "son_basvuru_tarihi": "15.12.2026",
-    "ozet": "Bu ilan sistemin görünümünü test etmeniz için eklenmiş örnek bir kayıttır. GitHub Actions botunu çalıştırdığınızda kamuilan.sbb.gov.tr üzerindeki gerçek ilanlar otomatik olarak buraya eklenecektir.",
-    "kadrolar": [
-      {
-        "unvan": "Hemşire",
-        "ogrenim": "lisans",
-        "kontenjan": 600,
-        "kpss_turu": "KPSS P3 - 60"
-      },
-      {
-        "unvan": "Tıbbi Sekreter",
-        "ogrenim": "onlisans",
-        "kontenjan": 400,
-        "kpss_turu": "KPSS P93 - 60"
-      },
-      {
-        "unvan": "Destek Personeli",
-        "ogrenim": "ortaogretim",
-        "kontenjan": 250,
-        "kpss_turu": "KPSS P94 - 60"
-      }
-    ],
-    "sartlar": [
-      "657 sayılı Devlet Memurları Kanunu'nun 48. maddesindeki genel şartları taşımak.",
-      "İlgili öğrenim düzeyinden mezun olmak.",
-      "İlgili KPSS puan türünden taban puanı almış olmak.",
-      "Görevini devamlı yapmasına engel sağlık sorunu bulunmamak."
-    ],
-    "basvuru_sekli": "Kariyer Kapısı (isealimkariyerkapisi.cbiko.gov.tr) üzerinden e-Devlet şifresi ile online başvuru.",
-    "kaynak_url": "https://kamuilan.sbb.gov.tr/",
-    "pdf_url": null,
-    "eklenme_tarihi": "2026-11-24 00:00"
-  },
-  {
-    "id": "ornek-002",
-    "slug": "belediye-zabita-ve-memur-alimi",
-    "kurum": "Büyükşehir Belediyesi (Örnek)",
-    "baslik": "Zabıta Memuru ve Tekniker Alım İlanı (Örnek İlan)",
-    "kategoriler": [
-      "onlisans",
-      "lisans"
-    ],
-    "kpss": "kpssli",
-    "kpss_detay": "KPSS P3 / P93 en az 65 puan",
-    "sehir": "Ankara",
-    "toplam_kontenjan": 85,
-    "baslangic_tarihi": "02.12.2026",
-    "son_basvuru_tarihi": "20.12.2026",
-    "ozet": "Önlisans ve lisans mezunlarına yönelik örnek belediye personel alımı kaydıdır. Bot çalıştırıldığında güncel resmi ilanlar otomatik listelenir.",
-    "kadrolar": [
-      {
-        "unvan": "Zabıta Memuru",
-        "ogrenim": "lisans",
-        "kontenjan": 50,
-        "kpss_turu": "KPSS P3 - 65"
-      },
-      {
-        "unvan": "Bilgisayar Teknikeri",
-        "ogrenim": "onlisans",
-        "kontenjan": 35,
-        "kpss_turu": "KPSS P93 - 65"
-      }
-    ],
-    "sartlar": [
-      "Sınav tarihinde 30 yaşını doldurmamış olmak (Zabıta kadrosu için).",
-      "En az B sınıfı sürücü belgesine sahip olmak.",
-      "KPSS puan türünden en az 65 puan almış olmak."
-    ],
-    "basvuru_sekli": "İlgili belediyenin insan kaynakları sayfası üzerinden elektronik başvuru.",
-    "kaynak_url": "https://kamuilan.sbb.gov.tr/",
-    "pdf_url": null,
-    "eklenme_tarihi": "2026-11-23 18:00"
-  }
-]
+{
+  "id": "icisleri-2026-1170",
+  "slug": "icisleri-bakanligi-1170-sozlesmeli-personel-alimi-2026",
+  "kurum": "T.C. İçişleri Bakanlığı",
+  "baslik": "Merkez ve Taşra Teşkilatına 1.170 Sözleşmeli (4/B) Personel Alımı",
+  "kategoriler": ["ortaogretim", "onlisans", "lisans"],
+  "kpss": "kpssli",
+  "kpss_detay": "2026 KPSS P3 / P93 / P94 en az 60 puan",
+  "sehir": "Türkiye Geneli",
+  "toplam_kontenjan": 1170,
+  "baslangic_tarihi": "07.12.2026",
+  "son_basvuru_tarihi": "11.12.2026",
+  "ozet": "T.C. İçişleri Bakanlığı merkez teşkilatına 119, taşra teşkilatına (valilik ve ilçe birimleri) 1.051 olmak üzere toplam 1.170 adet 4/B sözleşmeli personel alınacaktır. 2026 KPSS P3, P93 veya P94 puan türünden en az 60 puan alan adaylar 07-11 Aralık 2026 tarihleri arasında e-Devlet üzerinden en fazla 30 tercih yapabilecektir.",
+  "kadrolar": [
+    {"unvan": "Büro Personeli (Lisans)", "ogrenim": "lisans", "kontenjan": 222, "kpss_turu": "KPSSP3 - 60"},
+    {"unvan": "Büro Personeli (Önlisans - Diğer)", "ogrenim": "onlisans", "kontenjan": 544, "kpss_turu": "KPSSP93 - 60"},
+    {"unvan": "Büro Personeli (Nüfus ve Vatandaşlık)", "ogrenim": "onlisans", "kontenjan": 84, "kpss_turu": "KPSSP93 - 60"},
+    {"unvan": "Çağrı Karşılama Personeli (Lisans)", "ogrenim": "lisans", "kontenjan": 62, "kpss_turu": "KPSSP3 - 60"},
+    {"unvan": "Çağrı Karşılama Personeli (Önlisans)", "ogrenim": "onlisans", "kontenjan": 220, "kpss_turu": "KPSSP93 - 60"},
+    {"unvan": "Mühendis (Elektrik-Elektronik, İnşaat, Makine, Bilgisayar, Maden, Çevre)", "ogrenim": "lisans", "kontenjan": 40, "kpss_turu": "KPSSP3 - 60"},
+    {"unvan": "Avukat, Mimar, Programcı, Psikolog, Arşiv Uzmanı, Grafiker, İstatistikçi", "ogrenim": "lisans", "kontenjan": 32, "kpss_turu": "KPSSP3 - 60"},
+    {"unvan": "Tekniker (Elektrik-Elektronik / Haberleşme)", "ogrenim": "onlisans", "kontenjan": 10, "kpss_turu": "KPSSP93 - 60"},
+    {"unvan": "Teknisyen (Elektrik-Elektronik, Sıhhi Tesisat, Klima, Motor, Marangoz)", "ogrenim": "ortaogretim", "kontenjan": 14, "kpss_turu": "KPSSP94 - 60"},
+    {"unvan": "Destek Personeli (Temizlik, Şoför, Aşçı, Kaloriferci, Bahçıvan vb.)", "ogrenim": "ortaogretim", "kontenjan": 149, "kpss_turu": "KPSSP94 - 60"},
+    {"unvan": "Koruma ve Güvenlik Görevlisi (Silahlı)", "ogrenim": "ortaogretim", "kontenjan": 7, "kpss_turu": "KPSSP94 - 60"}
+  ],
+  "sartlar": [
+    "657 sayılı Devlet Memurları Kanunu'nun 48. maddesindeki genel şartları taşımak ve 11.12.2026 itibarıyla 18 yaşını doldurmuş olmak.",
+    "2026 KPSS (B) grubundan Lisans için KPSSP3, Önlisans için KPSSP93, Lise için KPSSP94 puan türünden en az 60 puan almış olmak.",
+    "Halen kamu kurum ve kuruluşlarında aynı ünvanda (Büro, Çağrı, Destek ve Güvenlik pozisyonları için herhangi bir ünvanda) 4/B sözleşmeli olarak çalışmıyor olmak; sözleşmesi feshedilenler için 1 yıllık bekleme süresini doldurmuş olmak.",
+    "Koruma ve Güvenlik Görevlisi (Silahlı) için 01.01.1992 ve sonrasında doğmuş olmak ve geçerli silahlı özel güvenlik kimlik kartına sahip olmak.",
+    "Aşçı, garson, bahçıvan, boyacı, taş ustası kadroları için ilgili lise alanından mezun olmak veya lise mezunu olup meslekte en az 3 yıl (1080 gün) SGK hizmet dökümüyle çalışmış olduğunu belgelemek."
+  ],
+  "basvuru_sekli": "07 - 11 Aralık 2026 (saat 16.00'ya kadar) tarihleri arasında e-Devlet üzerindeki 'İçişleri Bakanlığı Aday Profil Bilgileri Düzenleme ve Sınav Başvuru' modülü üzerinden elektronik ortamda (en fazla 30 tercih).",
+  "kaynak_url": "https://www.icisleri.gov.tr/",
+  "pdf_url": null,
+  "eklenme_tarihi": "2026-11-24 18:30"
+}
